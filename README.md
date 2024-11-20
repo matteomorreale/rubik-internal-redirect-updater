@@ -13,7 +13,6 @@
 - **Scansione dei link interni:** Scansiona i post del sito per individuare link interni che rimandano a redirect 301.
 - **Aggiornamento automatico:** Aggiorna automaticamente i link per puntare direttamente all'URL finale, migliorando la SEO e riducendo i tempi di caricamento.
 - **Interfaccia semplice:** Fornisce un'interfaccia amministrativa per avviare la scansione e visualizzare il log delle modifiche.
-- **Simulazione dell'aggiornamento:** È possibile simulare l'aggiornamento dei post per verificare il funzionamento senza effettivamente apportare modifiche.
 - **Tracciamento dello stato:** I link elaborati vengono tracciati in una tabella di supporto per evitare ripetizioni e loop infiniti.
 
 ## Requisiti
