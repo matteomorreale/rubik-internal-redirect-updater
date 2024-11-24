@@ -68,7 +68,7 @@ function rubik_process_next_link() {
                     'message' => 'Il link non ha restituito un redirect valido.',
                     'post_title' => get_the_title($link_data->post_id),
                     'old_link' => $link,
-                    'status' => 'Errore: redirect non trovato'
+                    'status' => 'Errore: loop di redirect, elaborazione interrotta'
                 ]);
             }
         } else {
@@ -90,7 +90,7 @@ function rubik_process_next_link() {
 
 // Funzione per ottenere la destinazione finale di tutti i 301
 function rubik_get_final_redirect_target($url) {
-    $max_redirects = 10; // Limite massimo di redirezioni per evitare loop
+    $max_redirects = 50; // Limite massimo di redirezioni per evitare loop
     $redirect_count = 0;
 
     $ch = curl_init();
