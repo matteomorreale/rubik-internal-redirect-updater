@@ -4,77 +4,78 @@
 
 **Version:** 1.2  
 **Author:** Matteo Morreale  
-**Description:** Questo plugin permette di aggiornare i link interni di un sito WordPress che puntano a redirect 301, sostituendoli con il loro target finale, evitando i passaggi di redirect inutili e migliorando le performance.
+**Description:** This plugin updates internal links on a WordPress site that point to 301 redirects, replacing them with their final target to avoid unnecessary redirect hops and improve performance.
 
---- ATTENZIONE --- è necessario che sia installato il plugin [Rubik Link Analyzer](https://github.com/matteomorreale/rubik-link-analyzer) e che sia stata effettuata la scansione.
+--- WARNING --- The [Rubik Link Analyzer](https://github.com/matteomorreale/rubik-link-analyzer) plugin must be installed, and a scan must have been performed.
 
-## Caratteristiche
+## Features
 
-- **Scansione dei link interni:** Scansiona i post del sito per individuare link interni che rimandano a redirect 301.
-- **Aggiornamento automatico:** Aggiorna automaticamente i link per puntare direttamente all'URL finale, migliorando la SEO e riducendo i tempi di caricamento.
-- **Interfaccia semplice:** Fornisce un'interfaccia amministrativa per avviare la scansione e visualizzare il log delle modifiche.
-- **Tracciamento dello stato:** I link elaborati vengono tracciati in una tabella di supporto per evitare ripetizioni e loop infiniti.
+- **Internal Link Scanning:** Scans site posts to identify internal links pointing to 301 redirects.
+- **Automatic Updates:** Automatically updates links to point directly to the final URL, improving SEO and reducing load times.
+- **Simple Interface:** Provides an admin interface to start scans and view modification logs.
+- **Status Tracking:** Processed links are tracked in a support table to avoid repetitions and infinite loops.
 
-## Requisiti
+## Requirements
 
-- **Plugin Rubik Link Analyzer** con scansione già effettuata
+- **Rubik Link Analyzer** plugin with a completed scan.
 - **WordPress 5.0+**
 - **PHP 7.0+**
-- **cURL** abilitato per le richieste HTTP
+- **cURL** enabled for HTTP requests.
 
-## Installazione
+## Installation
 
-1. **Carica il plugin:** Carica la cartella del plugin nella directory `/wp-content/plugins/`.
-2. **Attiva il plugin:** Vai nella sezione Plugin di WordPress e attiva "Rubik Internal Redirect Updater".
-3. **Opzioni di amministrazione:** Troverai una nuova voce di menu chiamata "Redirect Updater" nel pannello di amministrazione di WordPress.
+1. **Upload the plugin:** Upload the plugin folder to the `/wp-content/plugins/` directory.
+2. **Activate the plugin:** Go to the WordPress Plugins section and activate "Rubik Internal Redirect Updater."
+3. **Admin Options:** A new menu item called "Redirect Updater" will appear in the WordPress admin panel.
 
-## Utilizzo
+## Usage
 
-1. **Accesso al plugin:** Vai su **Redirect Updater** nel menu amministrativo di WordPress.
-2. **Avvia la scansione:** Clicca sul pulsante "Avvia scansione e aggiornamento link" per iniziare a scansionare i post.
-3. **Log delle modifiche:** Durante la scansione, il plugin mostrerà un log dei link elaborati, inclusi:
-   - Il **titolo del post** in cui il link è stato trovato (con link al post stesso).
-   - L'**URL originale** del link.
-   - Lo **stato** della verifica (es. OK, Ignorato, Errore).
-   - Il **codice di risposta HTTP** per ogni link (es. 301, 404, ecc.).
+1. **Access the plugin:** Navigate to **Redirect Updater** in the WordPress admin menu.
+2. **Start the scan:** Click the "Start Scan and Update Links" button to begin scanning posts.
+3. **View modification logs:** During the scan, the plugin will display a log of processed links, including:
+   - The **post title** where the link was found (with a link to the post itself).
+   - The **original URL** of the link.
+   - The **status** of the check (e.g., OK, Ignored, Error).
+   - The **HTTP response code** for each link (e.g., 301, 404, etc.).
 
-## Funzionamento
+## How It Works
 
-- **Scansione Link:** Il plugin effettua una scansione dei link all'interno dei post per determinare se puntano a redirect 301.
-- **Elaborazione Redirect:** I link interni vengono aggiornati con la destinazione finale se la redirezione viene confermata.
-- **Log Completo:** Viene generato un log con il risultato di ogni operazione, inclusi errori e codici di risposta HTTP.
-- **Tracciamento dei Link Elaborati:** Per evitare loop e ripetizioni, i link già elaborati vengono tracciati in una tabella separata (`rubik_processed_links`).
+- **Link Scanning:** The plugin scans links within posts to determine if they point to 301 redirects.
+- **Redirect Processing:** Internal links are updated to their final destination if the redirection is confirmed.
+- **Comprehensive Log:** A log is generated for each operation, including errors and HTTP response codes.
+- **Processed Link Tracking:** To avoid loops and repetitions, processed links are tracked in a separate table (`rubik_processed_links`).
 
-## Tabelle Utilizzate
+## Tables Used
 
-- **`rubik_link_data`**: Tabella esistente, utilizzata per la scansione dei link.
-- **`rubik_processed_links`**: Tabella di supporto creata dal plugin per memorizzare i link già elaborati e prevenire ripetizioni.
+- **`rubik_link_data`**: Existing table used for link scanning.
+- **`rubik_processed_links`**: Support table created by the plugin to store processed links and prevent repetitions.
 
-## Note di Sicurezza
+## Security Notes
 
-- Il plugin utilizza **nonce** per la protezione delle chiamate AJAX e per prevenire attacchi CSRF.
-- La verifica dei link è effettuata con **cURL**, assicurando che il plugin possa seguire i redirect senza esporre vulnerabilità.
+- The plugin uses **nonces** to protect AJAX calls and prevent CSRF attacks.
+- Link verification is performed using **cURL**, ensuring the plugin follows redirects without exposing vulnerabilities.
 
-## Limitazioni
+## Limitations
 
-- Attualmente il plugin **non modifica i link esterni**, ma li marca come ignorati nel log.
-- Se un link subisce una catena di redirect, il plugin segue tutti i redirect fino a un massimo di 10 per evitare possibili **loop infiniti**.
+- Currently, the plugin **does not modify external links**, marking them as ignored in the log.
+- If a link undergoes a chain of redirects, the plugin follows all redirects up to a maximum of 10 to avoid potential **infinite loops**.
 
-## Disinstallazione
+## Uninstallation
 
-Quando il plugin viene disattivato, la tabella di supporto (`rubik_processed_links`) viene rimossa per liberare spazio nel database.
+When the plugin is deactivated, the support table (`rubik_processed_links`) is removed to free up database space.
 
-## Contributi
+## Contributions
 
-Contributi e suggerimenti sono benvenuti! Sentiti libero di aprire issue o pull request su [GitHub](https://github.com/matteomorreale/rubik-internal-redirect-updater).
+Contributions and suggestions are welcome! Feel free to open issues or pull requests on [GitHub](https://github.com/matteomorreale/rubik-internal-redirect-updater).
 
-## Licenza
+## License
 
-Questo plugin è distribuito sotto la **GPLv2** o successive. Sentiti libero di modificarlo e ridistribuirlo.
+This plugin is licensed under **GPLv2** or later. Feel free to modify and redistribute it.
 
-## Contatti
+## Contact
 
-Per ulteriori informazioni o assistenza, contatta [Matteo Morreale](mailto:matteo.morreale@gmail.com) [sito web](https://matteomorreale.it)
+For more information or support, contact [Matteo Morreale](mailto:matteo.morreale@gmail.com) or visit [website](https://matteomorreale.it).
 
 ---
-Grazie per aver utilizzato Rubik Internal Redirect Updater! Speriamo che possa aiutarti a migliorare la gestione dei link e le performance del tuo sito.
+
+Thank you for using Rubik Internal Redirect Updater! We hope it helps improve your link management and site performance.
